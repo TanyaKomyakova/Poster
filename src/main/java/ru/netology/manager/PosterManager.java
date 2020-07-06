@@ -9,10 +9,12 @@ import ru.netology.domain.FilmsPoster;
 public class PosterManager {
     private FilmsPoster[] films = new FilmsPoster[0];
 
-    private int amountOfFilms = 10;
-    private int setAmountOfFilms;
+    private int posterLength10 = 10;
+    private int posterLength;
 
-
+    public PosterManager(int posterLength) {
+        this.posterLength = posterLength;
+    }
 
     public void add(FilmsPoster film) {    // Метод добавления
         int length = films.length + 1;
@@ -27,21 +29,20 @@ public class PosterManager {
     }
 
     public FilmsPoster[] getAll10LatestMovies() {   // Получить все 10 фильмов в обратном порядке
-        FilmsPoster[] result = new FilmsPoster[amountOfFilms];
+        FilmsPoster[] result = new FilmsPoster[posterLength10];
 
-        for (int i = 0; i < amountOfFilms; i++) {
-            int index = amountOfFilms - 1 - i;
+        for (int i = 0; i < posterLength10; i++) {
+            int index = posterLength10 - 1 - i;
+            result[i] = films[index];
+        }
+
+        for (int i = 0; i < posterLength; i++) {
+            int index = posterLength - 1 - i;
             result[i] = films[index];
         }
         return result;
+
+
     }
 
-    public FilmsPoster[] getAllFilmsOfAGivenNumber() {// Получить все фильмы с заданным количеством
-        FilmsPoster[] result = new FilmsPoster[setAmountOfFilms];
-        for (int i = 0; i < setAmountOfFilms; i++) {
-            int index = setAmountOfFilms - 1 - i;
-            result[i] = films[index];
-        }
-        return result;
-    }
 }

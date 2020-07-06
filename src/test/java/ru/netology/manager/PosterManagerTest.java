@@ -46,12 +46,13 @@ class PosterManagerTest {
 
     @Test
     public void showInReverseOrderLess10(){// Показать в обратном порядке менее 10
-        manager.setSetAmountOfFilms(5);
-        manager.getAllFilmsOfAGivenNumber();
-        FilmsPoster[] actual = manager.getAllFilmsOfAGivenNumber();
+        manager.setPosterLength(5);
+        manager.getAll10LatestMovies();
+        FilmsPoster[] actual = manager.getAll10LatestMovies();
         FilmsPoster[] expected = new FilmsPoster[]{fifth,fourth,third,second,first};
         assertArrayEquals(expected, actual);
 
     }
+
 
 }
