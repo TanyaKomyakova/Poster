@@ -9,7 +9,7 @@ import ru.netology.domain.FilmsPoster;
 public class PosterManager {
     private FilmsPoster[] films = new FilmsPoster[0];
 
-    private int posterLength10 = 10;
+    private int posterDefaultLength = 10;
     private int posterLength;
 
     public PosterManager(int posterLength) {
@@ -28,21 +28,22 @@ public class PosterManager {
         films = movies;
     }
 
-    public FilmsPoster[] getAll10LatestMovies() {   // Получить все 10 фильмов в обратном порядке
-        FilmsPoster[] result = new FilmsPoster[posterLength10];
+    public FilmsPoster[] getLastMovies() {   // Получить все 10 фильмов в обратном порядке
 
-        for (int i = 0; i < posterLength10; i++) {
-            int index = posterLength10 - 1 - i;
-            result[i] = films[index];
+        int filmCount = films.length;
+
+        if ((posterDefaultLength < films.length ) && (posterLength == 0)){
+            filmCount = posterDefaultLength;
+        } else if ((posterLength > 0) && (posterLength < films.length)) {
+            filmCount = posterLength;
         }
 
-        for (int i = 0; i < posterLength; i++) {
-            int index = posterLength - 1 - i;
+        FilmsPoster[] result = new FilmsPoster[filmCount];
+
+        for (int i = 0; i < filmCount; i++) {
+            int index = films.length - 1 - i;
             result[i] = films[index];
         }
         return result;
-
-
     }
-
 }

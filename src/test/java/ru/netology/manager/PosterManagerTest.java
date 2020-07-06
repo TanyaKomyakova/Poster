@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.FilmsPoster;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class PosterManagerTest {
     PosterManager manager = new PosterManager();
@@ -22,7 +22,7 @@ class PosterManagerTest {
 
 
     @BeforeEach
-    public void setUp(){ // Настроить
+    public void setUp() { // Настроить
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -37,22 +37,23 @@ class PosterManagerTest {
     }
 
     @Test
-    public void showInReverseOrder(){// Показать в обратном порядке 10
-        manager.getAll10LatestMovies();
-        FilmsPoster[] actual = manager.getAll10LatestMovies();
-        FilmsPoster[] expected = new FilmsPoster[]{tenth,ninth,eighth,seventh,sixth,fifth,fourth,third,second,first};
+    public void showInReverseOrder() {// Показать в обратном порядке 10 последних
+        FilmsPoster[] actual = manager.getLastMovies();
+        FilmsPoster[] expected = new FilmsPoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void showInReverseOrderLess10(){// Показать в обратном порядке менее 10
-        manager.setPosterLength(5);
-        manager.getAll10LatestMovies();
-        FilmsPoster[] actual = manager.getAll10LatestMovies();
-        FilmsPoster[] expected = new FilmsPoster[]{fifth,fourth,third,second,first};
+    public void showInReverseOrderLess10() {// Показать в обратном порядке с кастомной длиной афиши - 5
+        PosterManager manager = new PosterManager(5);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        FilmsPoster[] actual = manager.getLastMovies();
+        FilmsPoster[] expected = new FilmsPoster[]{sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
-
     }
-
-
 }
