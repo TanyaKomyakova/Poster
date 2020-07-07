@@ -117,5 +117,26 @@ class PosterManagerTest {
 
     }
 
+    @Test
+    public void showInReverseWithCustomLength01(){ // Показать в обратном порядке, когда кастомная длина 0
+        PosterManager manager = new PosterManager(7);
+        manager.setPosterDefaultLength(7);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+
+        FilmsPoster[] actual = manager.getLastMovies();
+        FilmsPoster[] expected = new FilmsPoster[]{seventh,sixth,fifth,fourth,third,second,first};
+        assertArrayEquals(expected, actual);
+
+    }
 
     }
